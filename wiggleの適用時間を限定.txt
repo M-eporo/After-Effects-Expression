@@ -1,11 +1,8 @@
 //6フレームから2秒15フレームの間、wiggleを適用
-//1秒間に10回、50pxの設定
+//1秒間に10回、50pxの設定でwiggleを適用
 
-// 6フレーム → 秒
-start = framesToTime(6);        
-// 2秒 + 15フレーム
-end   = 2 + framesToTime(15);   
-
+start = framesToTime(6);        // 6フレーム → 秒
+end   = 2 + framesToTime(15);   // 2秒 + 15フレーム
 if (time > start && time <= end){
   wiggle(10,50);
 }else{
@@ -14,14 +11,13 @@ if (time > start && time <= end){
 }
 
 //frameDuration = 1フレーム当たりの秒数を返す
-
-//1フレーム＝30フレームの場合、1秒 / 30frame = 0.0333秒
+//1秒＝30フレームの場合、1秒 / 30frame = 1フレーム当たり0.0333秒
 //6フレームの場合、約0.2秒
 start = thisComp.frameDuration * 6;
 end   = 2 + thisComp.frameDuration * 15;
-
 if (time > start && time <= end){
   wiggle(10,10);
 }else{
   value;
 }
+
