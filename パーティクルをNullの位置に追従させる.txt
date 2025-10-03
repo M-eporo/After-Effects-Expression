@@ -1,0 +1,10 @@
+//CC Partical World のPositionX
+//CC Partical Worldの座標系は中心を[0,0]とする。x or y: -0.5 ~ +0.5
+x = thisComp.layer("ヌル").transform.position[0] - thisComp.width / 2;
+//正規化、コンポサイズで割ることで -0.5 ~ +0.5 に収まる
+x / thisComp.width;
+
+//PositionY
+y = thisComp.layer("ヌル").transform.position[1] - thisComp.height / 2;
+//heightで割ってもよい
+y / thisComp.width;
