@@ -1,0 +1,8 @@
+//レイヤー("Circle_Triangle")の2秒の時の位置の値を取得する
+thisComp.layer("Circle_Triangle").position.valueAtTime(2);
+
+timeRemapのループ処理
+Ctrl + Alt + T でタイムリマップを設定
+ループさせたい最終のアニメーションキーフレーム位置に、タイムリマップのキーフレームを打つ
+一番最後のタイムリマップのキーフレームを削除する
+timeRemapのエクスプレッションに loopOut(type = "cycle", numKeyframes = 0)とする 
