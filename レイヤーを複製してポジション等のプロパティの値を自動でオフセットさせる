@@ -1,0 +1,9 @@
+** レイヤー毎にzPositionをオフセット位置に配置する
+-500がオフセット値
+zOffset = -500 * (index - thisComp.layer("シェイプレイヤー 1").index);
+thisComp.layer("シェイプレイヤー 1").transform.position[2] + zOffset;
+
+** レイヤー毎にz軸の回転角度をオフセットwさせる
+-10が角度
+rotationOffset = -10 * (index - thisComp.layer("シェイプレイヤー 1").index);
+thisComp.layer("シェイプレイヤー 1").transform.rotation + rotationOffset;
