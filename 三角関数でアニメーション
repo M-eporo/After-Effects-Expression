@@ -1,0 +1,75 @@
+x = cosΘ
+y = sinΘ
+1周360度 = 2π ≒ 6.28rad
+
+timeをそのまま入れると、6.28秒で1周期の波、アニメーションになる。
+結果、-1 , 0 , 1 を繰り返す。
+
+・Math.sin(time) : 6.28秒ごとに、0 → 1 → 0 → -1 → 0 を繰り返す
+・Math.sin(time) * 50 : -50 ～ +50 の範囲で上下に揺れる
+・Math.cos(time) : sinと同じ波だが、90度ずれた形でスタート
+
+円運動は cos がX、sin がY を担当
+基本：原点(0,0)から半径 r で円運動
+  r = 150;          // 半径
+  w = 1.0;          // 角速度(rad/秒) 例: 1なら約6.28秒で1周
+  t = time;         // レイヤー開始から回したいなら (time - inPoint)
+  [r*Math.cos(w*t), r*Math.sin(w*t)]
+
+任意の中心(cx, cy)を回る
+  r = 150;
+  w = 1.0;
+  center = [960, 540];  // コンポ全体の中心を指定（例: 1920x1080なら[960,540]）
+  t = time;
+  center + [r*Math.cos(w*t), r*Math.sin(w*t)]
+
+いまの位置(value)を中心に回る（配置してから回したい時）
+  r = 120;
+  w = 1.2;
+  t = time;
+  value + [r*Math.cos(w*t), r*Math.sin(w*t)]
+
+時計回り・反時計回りの切替.
+  r = 150;
+  speed = -1.0;   // 正なら反時計回り、負なら時計回り
+  t = time;
+  [value[0] + r*Math.cos(speed*t), value[1] + r*Math.sin(speed*t)]
+
+楕円運動（XとYで半径を変える）
+  rx = 200;   // X方向半径
+  ry = 80;    // Y方向半径
+  w  = 1.0;   // 角速度
+  t  = time - inPoint;
+  center = valueAtTime(inPoint);
+  center + [rx*Math.cos(w*t), ry*Math.sin(w*t)]
+
+3Dで円盤を回る（Zは固定、または上下ゆれを加える）
+  r = 200;
+  w = 1.0;
+  t = time;
+  cx = 960; cy = 540; cz = 0;    // 中心
+  x = cx + r*Math.cos(w*t);
+  y = cy + r*Math.sin(w*t);
+  z = cz;                         // 上下に揺らしたいなら例: cz + 50*Math.sin(w*t*0.5)
+  [x, y, z]
+
+何周かしたら止める（例：2周で停止）
+  r = 150;
+  w = 1.0;
+  t0 = inPoint;
+  t  = time - t0;
+  
+  maxTurns = 2;                         // 止めたい周回数
+  maxTime  = maxTurns * (2*Math.PI) / w;
+  
+  tt = Math.min(t, maxTime);            // 進行時間を上限でクランプ
+  center = valueAtTime(t0);
+  center + [r*Math.cos(w*tt), r*Math.sin(w*tt)]
+
+速度を「1周に何秒か」で指定したい（直感派）
+  r = 150;
+  period = 3.0;                 // 1周にかかる秒数（例: 3秒で1周）
+  w = 2*Math.PI/period;         // 角速度に換算
+  t = time - inPoint;
+  center = valueAtTime(inPoint);
+  center + [r*Math.cos(w*t), r*Math.sin(w*t)]
