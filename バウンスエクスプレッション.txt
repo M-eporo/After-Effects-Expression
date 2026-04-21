@@ -1,3 +1,7 @@
+amp = .05; // 振幅 (バウンドの強さ default)
+freq = 4.0; // 周波数 (バウンドの速さ default)
+decay = 5.0; // 減衰 (バウンドが収まる速さ default)
+
 n = 0;
 if (numKeys > 0){
 n = nearestKey(time).index;
@@ -10,13 +14,10 @@ t = 0;
 }else{
 t = time - key(n).time;
 }
+
 if (n > 0 && t < 1){
 v = velocityAtTime(key(n).time - thisComp.frameDuration/10);
-amp = .06;
-freq = 3;
-decay = 5.0;
 value + v*amp*Math.sin(freq*t*2*Math.PI)/Math.exp(decay*t);
 }else{
 value;
 }
-
