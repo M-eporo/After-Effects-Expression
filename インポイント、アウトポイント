@@ -1,0 +1,5 @@
+if(time <= inPoint + 1) {
+  ease(time, inPoint, inPoint + 1, 0, 100);
+} else {
+  ease(time, outPoint - 1,outPoint, 100, 0);
+}
