@@ -1,0 +1,1 @@
+parseFloat(effect("スライダー制御")("スライダー")).toFixed(0);
