@@ -1,0 +1,12 @@
+//位置のエクスプレッション
+ampY = 30;     // 上下の揺れ幅
+ampX = 12;     // 左右の揺れ幅
+freqY = 0.6;   // 上下の速さ
+freqX = 0.6;   // 左右の速さ
+
+offset = index * 0.4;
+
+x = value[0] + Math.sin((time + offset) * freqX * Math.PI * 2) * ampX;
+y = value[1] + Math.sin((time + offset) * freqY * Math.PI * 2) * ampY;
+
+[x, y]
