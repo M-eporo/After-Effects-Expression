@@ -1,0 +1,10 @@
+amp = 15;  // 上下する大きさ
+stride = 200; // 歩幅
+x = transform.xPosition;
+value - Math.abs(Math.sin(x / stride * Math.PI)) * amp;
+
+// 横移動の速さに関係なく、一定テンポで上下させたい場合
+amp = 10;   // 上下幅  
+speed = 2;  // 1秒間の歩行テンポ
+
+value - Math.abs(Math.sin(time * speed * Math.PI)) * amp;
